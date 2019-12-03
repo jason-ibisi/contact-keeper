@@ -22,6 +22,7 @@
     "function-paren-newline": 0,
     "no-console": 0,
     "comma-dangle": ["error", "only-multiline"],
-    "import/newline-after-import": 0
+    "import/newline-after-import": 0,
+    "no-empty": ["error", { "allowEmptyCatch": true }]
   }
 }
