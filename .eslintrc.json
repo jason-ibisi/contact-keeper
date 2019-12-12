@@ -24,6 +24,7 @@
     "comma-dangle": ["error", "only-multiline"],
     "import/newline-after-import": 0,
     "no-empty": ["error", { "allowEmptyCatch": true }],
+    "object-curly-newline": ["error", { "consistent": true }],
     "space-before-function-paren": [
       "error",
       {
