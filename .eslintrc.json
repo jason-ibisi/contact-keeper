@@ -4,7 +4,7 @@
     "es6": true,
     "node": true
   },
-  "extends": ["airbnb"],
+  "extends": ["plugin:flowtype/recommended", "airbnb"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -16,7 +16,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "flowtype"],
   "rules": {
     "implicit-arrow-linebreak": 0,
     "function-paren-newline": 0,
