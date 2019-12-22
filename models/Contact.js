@@ -11,7 +11,7 @@ const ContactSchema = mongoose.Schema({
       required: true
     },
     last: String,
-    Others: String
+    others: String
   },
   email: {
     type: String
