@@ -1,21 +1,23 @@
 import React, { useReducer } from 'react';
 import contactContext from './contactContext';
 import contactReducer from './contactReducer';
+import axios from 'axios';
 import {
+  GET_CONTACTS,
   ADD_CONTACT,
   UPDATE_CONTACT,
   DELETE_CONTACT,
   FILTER_CONTACT,
+  CLEAR_CONTACTS,
   CONTACT_ERROR,
   SET_CURRENT,
   CLEAR_CURRENT,
   CLEAR_FILTER
 } from '../types';
-import Axios from 'axios';
 
 const ContactState = props => {
   const initialState = {
-    contacts: [],
+    contacts: null,
     current: null,
     filtered: null,
     error: null
@@ -23,6 +25,16 @@ const ContactState = props => {
 
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
+  // Get Contacts
+  const getContacts = async () => {
+    try {
+      const res = await axios.get('/api/contacts');
+
+      dispatch({ type: GET_CONTACTS, payload: res.data });
+    } catch (error) {
+      dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
+    }
+  };
   // Add Contact
   const addContact = async contact => {
     const config = {
@@ -32,7 +44,7 @@ const ContactState = props => {
     };
 
     try {
-      const res = await Axios.post('/api/contacts', contact, config);
+      const res = await axios.post('/api/contacts', contact, config);
       dispatch({ type: ADD_CONTACT, payload: res.data });
     } catch (error) {
       dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
@@ -47,6 +59,11 @@ const ContactState = props => {
   // Update Contact
   const updateContact = contact => {
     dispatch({ type: UPDATE_CONTACT, payload: contact });
+  };
+
+  // Clear Contacts
+  const clearContacts = () => {
+    dispatch({ type: CLEAR_CONTACTS });
   };
 
   // Set Current Contact
@@ -76,9 +93,11 @@ const ContactState = props => {
         current: state.current,
         filtered: state.filtered,
         error: state.error,
+        getContacts,
         addContact,
         updateContact,
         deleteContact,
+        clearContacts,
         setCurrent,
         clearCurrent,
         filterContacts,
