@@ -17,7 +17,7 @@ npm client-install
 
 ### Mongo connection setup
 
-Edit your /config/default.json file to include the correct MongoDB URI
+Edit your /config/default.json & /config/production.json file to include the correct MongoDB URI
 
 ### Run Server
 

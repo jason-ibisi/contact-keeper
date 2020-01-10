@@ -20,6 +20,7 @@ node_modules/
 .env.test.local
 .env.production.local
 /config/default.jso*
+/config/production.jso*
 /client/.env.local
 /client/.env.development.local
 /client/.env.test.local
